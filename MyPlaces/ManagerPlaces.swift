@@ -26,14 +26,16 @@ class ManagerPlaces {
         return thePlaces [position]
     }
     
-    func GetItemById(id : String) -> Place {
-        return thePlaces [1]
-    }
-    
     func remove(_value: Place) {
-        
+        if (thePlaces.contains {$0.id == _value.id }) {
+            thePlaces.removeAll {$0.id == _value.id }
+        }
     }
     
+    func getPlaces() -> [Place] {
+        return thePlaces
+    }
+
     
     // Singleton. Unique instance for All Application
     private static var sharedManagerPlaces : ManagerPlaces = {
