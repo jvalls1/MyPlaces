@@ -22,7 +22,7 @@ class Place {
     var name : String = ""
     var description : String = ""
     var location : CLLocationCoordinate2D!
-    var image : Data? = nil
+    var image_in : Data? = nil
     
     init() {
         self.id=UUID().uuidString
@@ -31,13 +31,17 @@ class Place {
     // Giving an unique identifier to the Object. Low probability to collision.
     init(name: String, description: String, image_in: Data?) {
         self.id=UUID().uuidString
+        self.description=description
+        self.image_in=image_in
     }
     
     init(type: PlacesTypes, name: String, description: String, image_in :Data?) {
         self.id = UUID().uuidString
+        self.name=name
+        self.description=description
+        self.image_in=image_in
     }
 
-    
 }
 
 
