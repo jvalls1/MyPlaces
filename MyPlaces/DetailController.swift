@@ -21,7 +21,8 @@ class DetailController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func Close(_ sender: Any) {
+    // It closes the view and return to previous view
+    @IBAction func close(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     

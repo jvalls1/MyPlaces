@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65A2DF8921567FBB00811EC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2DF8821567FBB00811EC2 /* AppDelegate.swift */; };
+		65568D802163F68400F31156 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2DF8821567FBB00811EC2 /* AppDelegate.swift */; };
 		65A2DF8B21567FBB00811EC2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2DF8A21567FBB00811EC2 /* FirstViewController.swift */; };
 		65A2DF8D21567FBC00811EC2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2DF8C21567FBB00811EC2 /* SecondViewController.swift */; };
 		65A2DF9021567FBC00811EC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A2DF8E21567FBC00811EC2 /* Main.storyboard */; };
@@ -170,8 +170,8 @@
 				65D77076215FEFFE0056EBDA /* PlaceTourist.swift in Sources */,
 				65A2DF9D2156949700811EC2 /* DetailController.swift in Sources */,
 				65A2DF8D21567FBC00811EC2 /* SecondViewController.swift in Sources */,
-				65A2DF8921567FBB00811EC2 /* AppDelegate.swift in Sources */,
 				65A2DF8B21567FBB00811EC2 /* FirstViewController.swift in Sources */,
+				65568D802163F68400F31156 /* AppDelegate.swift in Sources */,
 				65D77078215FF7F10056EBDA /* ManagerPlaces.swift in Sources */,
 				65D77074215FEBC60056EBDA /* Place.swift in Sources */,
 			);

@@ -28,6 +28,7 @@ class Place {
         self.id=UUID().uuidString
     }
     
+    // Giving an unique identifier to the Object. Low probability to collision.
     init(name: String, description: String, image_in: Data?) {
         self.id=UUID().uuidString
     }

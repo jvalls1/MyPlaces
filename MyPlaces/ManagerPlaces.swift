@@ -17,21 +17,24 @@ class ManagerPlaces {
     func append(_value: Place) {
         thePlaces.append(_value)
     }
-    
+    // Return the numbers of Places Objects contained in the array
     func GetCount() -> Int {
         return thePlaces.count
     }
 
+    // Return the Place Object positioned at posintion number specified
     func GetItemAt(position: Int) -> Place {
         return thePlaces [position]
     }
     
+    // Remove a Place Object passing the object.
     func remove(_value: Place) {
         if (thePlaces.contains {$0.id == _value.id }) {
             thePlaces.removeAll {$0.id == _value.id }
         }
     }
     
+    // Return all Places in Array Format
     func getPlaces() -> [Place] {
         return thePlaces
     }
