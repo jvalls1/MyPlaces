@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65395D542186333600BD86E9 /* database.txt in Resources */ = {isa = PBXBuildFile; fileRef = 65395D532186333500BD86E9 /* database.txt */; };
 		65568D802163F68400F31156 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2DF8821567FBB00811EC2 /* AppDelegate.swift */; };
+		656964CD217B94F000E4F0FA /* ManagerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656964CC217B94F000E4F0FA /* ManagerLocation.swift */; };
+		6577B7A4217F39CA00B5DB3A /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6577B7A3217F39CA00B5DB3A /* FileSystem.swift */; };
 		65A2DF8B21567FBB00811EC2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2DF8A21567FBB00811EC2 /* FirstViewController.swift */; };
 		65A2DF8D21567FBC00811EC2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2DF8C21567FBB00811EC2 /* SecondViewController.swift */; };
 		65A2DF9021567FBC00811EC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A2DF8E21567FBC00811EC2 /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		65395D532186333500BD86E9 /* database.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = database.txt; sourceTree = "<group>"; };
+		656964CC217B94F000E4F0FA /* ManagerLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerLocation.swift; sourceTree = "<group>"; };
+		6577B7A3217F39CA00B5DB3A /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		65A2DF8521567FBB00811EC2 /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A2DF8821567FBB00811EC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65A2DF8A21567FBB00811EC2 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65395D52218632A700BD86E9 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				65395D532186333500BD86E9 /* database.txt */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
 		65A2DF7C21567FBB00811EC2 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +82,8 @@
 		65A2DF8721567FBB00811EC2 /* MyPlaces */ = {
 			isa = PBXGroup;
 			children = (
+				65395D52218632A700BD86E9 /* Documents */,
+				6577B7A3217F39CA00B5DB3A /* FileSystem.swift */,
 				65A2DF8821567FBB00811EC2 /* AppDelegate.swift */,
 				65A2DF8A21567FBB00811EC2 /* FirstViewController.swift */,
 				65A2DF8C21567FBB00811EC2 /* SecondViewController.swift */,
@@ -76,6 +92,7 @@
 				65A2DF9321567FBE00811EC2 /* LaunchScreen.storyboard */,
 				65A2DF9621567FBE00811EC2 /* Info.plist */,
 				65A2DF9C2156949700811EC2 /* DetailController.swift */,
+				656964CC217B94F000E4F0FA /* ManagerLocation.swift */,
 				65D77073215FEBC60056EBDA /* Place.swift */,
 				65D77075215FEFFE0056EBDA /* PlaceTourist.swift */,
 				65D77077215FF7F10056EBDA /* ManagerPlaces.swift */,
@@ -123,6 +140,7 @@
 				TargetAttributes = {
 					65A2DF8421567FBB00811EC2 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -132,7 +150,7 @@
 				};
 			};
 			buildConfigurationList = 65A2DF8021567FBB00811EC2 /* Build configuration list for PBXProject "MyPlaces" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -157,6 +175,7 @@
 				65A2DF9521567FBE00811EC2 /* LaunchScreen.storyboard in Resources */,
 				65A2DF9221567FBE00811EC2 /* Assets.xcassets in Resources */,
 				65A2DF9021567FBC00811EC2 /* Main.storyboard in Resources */,
+				65395D542186333600BD86E9 /* database.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,9 +187,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D77076215FEFFE0056EBDA /* PlaceTourist.swift in Sources */,
+				6577B7A4217F39CA00B5DB3A /* FileSystem.swift in Sources */,
 				65A2DF9D2156949700811EC2 /* DetailController.swift in Sources */,
 				65A2DF8D21567FBC00811EC2 /* SecondViewController.swift in Sources */,
 				65A2DF8B21567FBB00811EC2 /* FirstViewController.swift in Sources */,
+				656964CD217B94F000E4F0FA /* ManagerLocation.swift in Sources */,
 				65568D802163F68400F31156 /* AppDelegate.swift in Sources */,
 				65D77078215FF7F10056EBDA /* ManagerPlaces.swift in Sources */,
 				65D77074215FEBC60056EBDA /* Place.swift in Sources */,
@@ -325,7 +346,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uoc.com.MyPlaces;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -342,7 +363,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uoc.com.MyPlaces;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

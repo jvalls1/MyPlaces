@@ -14,14 +14,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Creating a singleton instance of ManagerPlaces
-        let manager = ManagerPlaces.shared
+        ManagerPlaces.shared()
+        
+        // ****************************************************************************
+        // Simulation. Discomment
+        // ****************************************************************************
         
         // Adding places to test.
-        let pl = Place(name:"Test Place",description: "More Info", image_in: nil)
-        manager().append(_value: pl)
+        // let pl = Place(name:"Test Place",description: "More Info", image_in: nil)
+        // manager().append(_value: pl)
+        // let pl2 = Place(name:"Test Place 2",description: "More Info2",image_in:nil)
+        // manager().append(_value: pl2)
+        // let pl3 = Place(name:"Cosmo Caixa",description: "More Info3",image_in:nil)
+        // manager().append(_value: pl3)
+        // let pl4 = PlaceTourist(name:"La Sagrada Familia",description: "La Sagrada Familia...com a personsa fisica",discount_tourist: "El 3%" ,image_in:nil)
+        // manager().append(_value: pl4)
+        // let pl5 = PlaceTourist(name:"La carretera de les Aigües",description: "Per veure vistes aeres de Barcelona",discount_tourist: "El 5%",image_in:nil)
+        // manager().append(_value: pl5)
         
         return true
     }
@@ -43,9 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
+    // Storing applications data.
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        ManagerPlaces.shared().store()
     }
 
 
