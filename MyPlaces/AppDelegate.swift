@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // let pl5 = PlaceTourist(name:"La carretera de les Aigües",description: "Per veure vistes aeres de Barcelona",discount_tourist: "El 5%",image_in:nil)
         // manager().append(_value: pl5)
         
-        return true
+        return true		
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        ManagerPlaces.shared().store()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -59,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Storing applications data.
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        ManagerPlaces.shared().store()
     }
 
 

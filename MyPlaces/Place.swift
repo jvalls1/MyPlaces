@@ -84,6 +84,10 @@ class Place : Codable {
         let longitude = try container.decode(Double.self, forKey: .longitude)
         
         location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        // S'afegeix Image_In.
+        let imageFileURL = NSURL(fileURLWithPath: FileSystem.GetPathImage(id: id))
+        image_in = try Data(contentsOf: imageFileURL as URL)
     
     }
     

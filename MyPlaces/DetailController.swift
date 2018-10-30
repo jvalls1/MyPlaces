@@ -86,7 +86,11 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
             } else {
                 rowInComponent = 1
             }
+            
+            // lace!.image_in = Data(contentsOf: FileSystem.GetPathImage(id: place!.id))
+            
             viewPicker.selectRow(rowInComponent,inComponent: 0, animated: true)
+            imagePicked.image = UIImage(data: place!.image_in!)
             
             // Change of Btn title
             btnUpdate.setTitle("Update",for:.normal)
@@ -168,8 +172,10 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
     }
     
     @IBAction func remove(_ sender: Any) {
+
         ManagerPlaces.shared().delete(_value: place!)
         ManagerPlaces.shared().updateObservers()
+    
     }
     
     @IBAction func selectImage(_ sender: Any) {

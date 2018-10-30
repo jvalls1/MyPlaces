@@ -75,10 +75,16 @@ class FirstViewController: UITableViewController, ManagerPlacesObserver {
         // Adding subview Label to Cell
         cell.contentView.addSubview(label)
         
+        // Reading the data from Place.
+        
         // Building Image and adding subview to cell
-        let imageIcon : UIImageView = UIImageView(image: UIImage(named:"cosmo.jpg"))
-        imageIcon.frame = CGRect(x:10,y:25, width:60, height:45)
-        cell.contentView.addSubview(imageIcon)
+        if place.image_in != nil {
+            
+            let imageIcon : UIImageView = UIImageView(image:UIImage(data: place.image_in!))
+            imageIcon.frame = CGRect(x:10,y:25, width:60, height:45)
+            cell.contentView.addSubview(imageIcon)
+            
+        }
         
         // returning cell
         return cell

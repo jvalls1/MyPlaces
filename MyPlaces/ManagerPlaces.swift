@@ -77,8 +77,9 @@ class ManagerPlaces : Codable {
     func remove(_value: Place) -> Place!  {
         var removed : Place!
         if (places.contains {$0.id == _value.id }) {
-            var places : [Place]  = self.places.filter {$0.id == _value.id}
-            removed = places.removeFirst()
+            let orPlaces : [Place]  = self.places.filter {$0.id == _value.id}
+            removed = orPlaces.first
+            places.removeAll { $0.id == removed.id }
         }
         return removed
     }
