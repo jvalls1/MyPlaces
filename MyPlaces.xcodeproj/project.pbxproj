@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		652847072189CC6200E92C56 /* MKMyPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652847062189CC6200E92C56 /* MKMyPointAnnotation.swift */; };
 		65568D802163F68400F31156 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2DF8821567FBB00811EC2 /* AppDelegate.swift */; };
 		656964CD217B94F000E4F0FA /* ManagerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656964CC217B94F000E4F0FA /* ManagerLocation.swift */; };
 		6577B7A4217F39CA00B5DB3A /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6577B7A3217F39CA00B5DB3A /* FileSystem.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		652847062189CC6200E92C56 /* MKMyPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMyPointAnnotation.swift; sourceTree = "<group>"; };
 		656964CC217B94F000E4F0FA /* ManagerLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerLocation.swift; sourceTree = "<group>"; };
 		6577B7A3217F39CA00B5DB3A /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		65A2DF8521567FBB00811EC2 /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +87,7 @@
 				65D77073215FEBC60056EBDA /* Place.swift */,
 				65D77075215FEFFE0056EBDA /* PlaceTourist.swift */,
 				65D77077215FF7F10056EBDA /* ManagerPlaces.swift */,
+				652847062189CC6200E92C56 /* MKMyPointAnnotation.swift */,
 			);
 			path = MyPlaces;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D77076215FEFFE0056EBDA /* PlaceTourist.swift in Sources */,
+				652847072189CC6200E92C56 /* MKMyPointAnnotation.swift in Sources */,
 				6577B7A4217F39CA00B5DB3A /* FileSystem.swift in Sources */,
 				65A2DF9D2156949700811EC2 /* DetailController.swift in Sources */,
 				65A2DF8D21567FBC00811EC2 /* SecondViewController.swift in Sources */,

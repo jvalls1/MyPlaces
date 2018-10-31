@@ -235,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usy-Y9-bBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1833" y="188"/>
+            <point key="canvasLocation" x="1890" y="197"/>
         </scene>
         <!--List-->
         <scene sceneID="mBk-x0-FS2">
@@ -260,6 +260,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Emg-R3-4vO"/>
+        <segue reference="jln-AT-Tza"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import MapKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, MKMapViewDelegate {
+    
+    @IBOutlet weak var m_map: MKMapView! 
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +22,8 @@ class SecondViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
 
 }
