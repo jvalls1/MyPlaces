@@ -153,7 +153,7 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         
         newPlace.name = textName.text!
         newPlace.description = textDescription.text!
-        newPlace.location = ManagerLocation().getLocation()
+        newPlace.location = ManagerLocation.shared().getLocation()
         if (viewPicker.selectedRow(inComponent: 0) == 0 ) { newPlace.type = Place.PlacesTypes.GenericPlace }
         else { newPlace.type = Place.PlacesTypes.TouristicPlace }
         
