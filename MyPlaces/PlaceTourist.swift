@@ -47,8 +47,5 @@ class PlaceTourist :  Place {
         
     }
     
-    
-    
-    
 }
 

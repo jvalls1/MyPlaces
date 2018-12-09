@@ -40,7 +40,7 @@ class FileSystem
     class func GetPathImage(id:String)->String
     {
         return GetPathBase() + "/" + id;
-    }
+    }	
     
     class func Read() -> String
     {

@@ -37,7 +37,7 @@ class FirstViewController: UITableViewController, ManagerPlacesObserver {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
         // Implement. Accedemos al Manager Places.
-        let wplace = ManagerPlaces.shared().getItemAt(position: indexPath.row)
+        let wplace = manager.getItemAt(position: indexPath.row)
         let dc:DetailController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "DetailController") as! DetailController
         dc.place = wplace
         
@@ -57,6 +57,12 @@ class FirstViewController: UITableViewController, ManagerPlacesObserver {
         var cell: UITableViewCell
         cell = UITableViewCell()
         
+        let swipeRec = UISwipeGestureRecognizer(target: self, action:#selector(removeRow(recognizer:)))
+        swipeRec.direction = . right
+        cell.tag = indexPath.item
+        cell.addGestureRecognizer(swipeRec)
+        
+        
         let wt : CGFloat = tableView.bounds.size.width
         let place :  Place = manager.getItemAt(position: indexPath.item)
         
@@ -75,6 +81,7 @@ class FirstViewController: UITableViewController, ManagerPlacesObserver {
         // Adding subview Label to Cell
         cell.contentView.addSubview(label)
         
+        
         // Reading the data from Place.
         
         // Building Image and adding subview to cell
@@ -89,6 +96,12 @@ class FirstViewController: UITableViewController, ManagerPlacesObserver {
         // returning cell
         return cell
         
+    }
+    
+    @objc func removeRow(recognizer: UISwipeGestureRecognizer) {
+        let thePlace : Place  = manager.getItemAt(position: recognizer.view!.tag)
+        manager.delete(_value:thePlace)
+        manager.updateObservers()
     }
     
     func onPlacesChange() {

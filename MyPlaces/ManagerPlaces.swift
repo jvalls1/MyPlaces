@@ -7,13 +7,18 @@
 //
 
 import Foundation
+import MapKit
 
 
 protocol ManagerPlacesObserver {
-    	func onPlacesChange()
+    func onPlacesChange()
 }
 
-class ManagerPlaces : Codable {
+protocol ManagerPlacesStoreObserver {
+    func onPlacesStoreEnd(result: Int)
+}
+
+class ManagerPlaces : NSObject,Codable {
     
     // Constants Dedicates to Coding and Decoding Services
     enum CodingKeys: String, CodingKey {
@@ -22,6 +27,9 @@ class ManagerPlaces : Codable {
     enum PlacesTypeKey: CodingKey {
         case type
     }
+    
+    //
+    public var delegate: ManagerPlacesStoreObserver? = nil
     
     // Listado de observadores.
     public var m_observers = Array<ManagerPlacesObserver>()
@@ -89,6 +97,33 @@ class ManagerPlaces : Codable {
         return places
     }
     
+    
+    func calcularCentroLocations() -> CLLocationCoordinate2D {
+        
+        var count : Double = 0
+        var totLatitude : Double = 0
+        var totLongitude : Double = 0
+        
+        for place in places {
+            
+            if (place.location != nil) {
+                
+                totLatitude = totLatitude + place.location.latitude
+                totLongitude = totLongitude + place.location.longitude
+                count = count + 1
+            }
+            
+        }
+        
+        var avgCoordinate2D : CLLocationCoordinate2D = CLLocationCoordinate2D()
+        if (count != 0) {
+            avgCoordinate2D.latitude = totLatitude / count
+            avgCoordinate2D.longitude = totLongitude / count
+        }
+        return avgCoordinate2D
+        
+    }
+    
     // ***********************************************************************************************
     // Enconding and decoding functions
     // ***********************************************************************************************
@@ -123,16 +158,20 @@ class ManagerPlaces : Codable {
     // *********************************************************************************************
     // Storing and loading functions
     // *********************************************************************************************
-    
     func store()
+    {
+        performSelector(inBackground: #selector(storeInternal), with: nil)
+    }
+    
+    @objc func storeInternal()
     {
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(self)
             for place in places {
-                if(place.image_in != nil){
+                if (place.image_in != nil){
                     FileSystem.WriteData(id:place.id,image:place.image_in!)
-                    place.image_in = nil
+                    // place.image_in = nil
                 }
             }
             FileSystem.Write(data: String(data: data, encoding: .utf8)!)
@@ -140,10 +179,15 @@ class ManagerPlaces : Codable {
         catch
         {
         }
+        
+        // To advise the DetailController the finishing method
+        Thread.sleep(forTimeInterval: 2)
+        self.delegate?.onPlacesStoreEnd(result: 1)
+        
     }
     
     // Loading function
-    private static func load() -> ManagerPlaces? {
+    private func load() -> ManagerPlaces? {
         
         var result : ManagerPlaces? = nil
         
@@ -161,21 +205,22 @@ class ManagerPlaces : Codable {
         return result
     }
     
+    
     // Singleton. Unique instance for All Application
     private static var sharedManagerPlaces : ManagerPlaces = {
         
         var singletonManager: ManagerPlaces?
-        var tmpManagerPlaces = load()
+        var tmpManagerPlaces = ManagerPlaces().load()
         
         // If added to workaround the question of Documents.txt
         if tmpManagerPlaces != nil {
-            singletonManager = load()
+            singletonManager = tmpManagerPlaces
         } else {
             singletonManager = ManagerPlaces()
         }
         return singletonManager!
-    
-    }()
+        
+    }()    
     
     class func shared() -> ManagerPlaces {
         return sharedManagerPlaces

@@ -40,8 +40,8 @@ class Place : Codable {
     // Giving an unique identifier to the Object. Low probability to collision.
     init(name: String, description: String, image_in: Data?) {
         
-        self.id=UUID().uuidString
-        self.description=description
+        self.id = UUID().uuidString
+        self.description = description
         self.name = name
         self.image_in = image_in
         
@@ -50,9 +50,9 @@ class Place : Codable {
     init(type: PlacesTypes, name: String, description: String, image_in :Data?) {
         
         self.id = UUID().uuidString
-        self.name=name
-        self.description=description
-        self.image_in=image_in
+        self.name = name
+        self.description = description
+        self.image_in = image_in
         self.type = type
         
     }

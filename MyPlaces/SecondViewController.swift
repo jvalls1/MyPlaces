@@ -13,17 +13,23 @@ import Foundation
 
 class SecondViewController: UIViewController, MKMapViewDelegate, ManagerPlacesObserver  {
    
-    
     @IBOutlet weak var m_map: MKMapView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Capturamos los elementos de m_map en esta mismo ViewController
+        m_map.delegate = self
         
         // Añadirnos como observador del ManagerPlaces.
          ManagerPlaces.shared().addObserver(object:self)
+        
         // Cargar los makers por primera vez
         addMakers()
+        
         
     }
 
@@ -51,7 +57,7 @@ class SecondViewController: UIViewController, MKMapViewDelegate, ManagerPlacesOb
                 let lat:Double = p.location.latitude
                 let lon:Double = p.location.longitude
                 let annotation:MKMyPointAnnotation = MKMyPointAnnotation(coordinate:
-                CLLocationCoordinate2D(latitude: lat,longitude: lon),title: title,place_id: id)
+                    CLLocationCoordinate2D(latitude: lat,longitude: lon),title: title, subtitle: "XXX", place_id: id)
                 self.m_map.addAnnotation(annotation)
             
             }		
@@ -82,15 +88,15 @@ class SecondViewController: UIViewController, MKMapViewDelegate, ManagerPlacesOb
         return nil
     }
     
-    func mapView(_ mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         // Annotation has the place Id.
-        let annotation:MKMyPointAnnotation = annotationView.annotation as! MKMyPointAnnotation
+        let annotation:MKMyPointAnnotation = view.annotation as! MKMyPointAnnotation
     
         // Implement. Accedemos al Manager Places y obtenemos el place Id.
         let wplace = ManagerPlaces.shared().getItemById(_id: annotation.place_id)
         
-        // Instanciamos el DetailController y le asignamos el place. 
+        // Instanciamos el DetailController y le asignamos el place.
         let dc:DetailController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "DetailController") as! DetailController
         dc.place = wplace
         
@@ -98,6 +104,9 @@ class SecondViewController: UIViewController, MKMapViewDelegate, ManagerPlacesOb
         present(dc, animated: true, completion: nil)
         
     }
+    
+    
+    
     
     func onPlacesChange() {
         removeMakers()

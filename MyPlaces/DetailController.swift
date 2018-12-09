@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 
 class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegate, UIPickerViewDelegate,
-     UIPickerViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+     UIPickerViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate, ManagerPlacesStoreObserver {
     
     @IBOutlet weak var constrainHeight : NSLayoutConstraint!
     
@@ -20,6 +21,7 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
     @IBOutlet weak var btnUpdate: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     var place: Place? = nil
@@ -72,6 +74,8 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         self.viewPicker.delegate = self
         self.viewPicker.dataSource = self
 
+        self.activityIndicator.hidesWhenStopped = true
+        
         // Do any additional setup after loading the view.
         if (place != nil) {
             
@@ -124,6 +128,11 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func onPlacesStoreEnd(result: Int) {
+        self.performSelector(onMainThread: #selector(endStore), with: nil, waitUntilDone: false)
+    }
+    
     // It closes the view and return to previous view
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -132,49 +141,82 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
     @IBAction func update(_ sender: Any) {
         
         let newPlace : Place
+        let newTPlace : PlaceTourist
+        let managerPlaces : ManagerPlaces
+        let managerLocation : ManagerLocation
+        
+        let vName : String
+        let vDescription : String
+        let vLocation : CLLocationCoordinate2D
+        let vImage: Data
+        let vType: Place.PlacesTypes
+        let vDiscount : String = "5%"
+        
+        // *********************************************************************************
+        // Services
+        // *********************************************************************************
+        managerPlaces = ManagerPlaces.shared()
+        managerPlaces.delegate = self
+        managerLocation = ManagerLocation.shared()
+        
+        // *********************************************************************************
+        // Data from screen
+        // *********************************************************************************
+        
+        // Selected Image
+        var data:Data? = nil
+        data = imagePicked.image?.jpegData(compressionQuality: 1.0)
+        
+        // Picker
+        if (viewPicker.selectedRow(inComponent: 0) == 0 ) { vType = Place.PlacesTypes.GenericPlace }
+        else { vType = Place.PlacesTypes.TouristicPlace }
+        
+        vName = textName.text!
+        vDescription = textDescription.text!
+        vLocation = managerLocation.getLocation()
+        vImage = data!
+        
+        // ********************************************************************************
+        
+        // Empezamos la animacion.
+        activityIndicator.startAnimating()
         
         // Corresponde a una operación de New
         if (place==nil) {
-            
-            // Chosen Type of Place
-            if (viewPicker.selectedRow(inComponent: 0) == 0 ) {
-                newPlace = Place()
-            }
-            else {
-            // Chosen Touristic Places
-                newPlace = Place()
-                // newPlace.discount_tourist = "Casa de la pradera"
+        
+            if  (vType == Place.PlacesTypes.GenericPlace) {
+                newPlace = Place(name: vName,description: vDescription,image_in: vImage)
+                newPlace.location = vLocation
+                managerPlaces.append(_value: newPlace)
+            } else {
+                newTPlace = PlaceTourist(name: vName,description: vDescription, discount_tourist: vDiscount, image_in: vImage)
+                newTPlace.location = vLocation
+                managerPlaces.append(_value: newTPlace)
             }
         }
         // Corresponde a una operación de Update
         else {
             newPlace = ManagerPlaces.shared().remove(_value: place!)
+            newPlace.name = vName
+            newPlace.description = vDescription
+            newPlace.image_in = vImage
+            newPlace.location = vLocation
+            managerPlaces.append(_value: newPlace)
         }
         
-        newPlace.name = textName.text!
-        newPlace.description = textDescription.text!
-        newPlace.location = ManagerLocation.shared().getLocation()
-        if (viewPicker.selectedRow(inComponent: 0) == 0 ) { newPlace.type = Place.PlacesTypes.GenericPlace }
-        else { newPlace.type = Place.PlacesTypes.TouristicPlace }
-        
-        // Selected Image
-        var data:Data? = nil
-        // data = UIImageJPEGRepresentation(imagePicked.image!,1.0) -- Deprecated.
-        data = imagePicked.image?.jpegData(compressionQuality: 1.0)
-        newPlace.image_in = data
-    
-        
         // It misses treatment of Data type.
-        ManagerPlaces.shared().append(_value: newPlace)
-        ManagerPlaces.shared().updateObservers()
+        managerPlaces.updateObservers()
         
+        // Seriliazating ...... all datababse.
+        managerPlaces.store()
         
     }
     
     @IBAction func remove(_ sender: Any) {
-
-        ManagerPlaces.shared().delete(_value: place!)
-        ManagerPlaces.shared().updateObservers()
+        
+        let managerPlaces = ManagerPlaces.shared()
+        managerPlaces.delete(_value: place!)
+        managerPlaces.updateObservers()
     
     }
     
@@ -244,9 +286,19 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
                 else {
                     keyboardHeight = nil
                 }
-    }
+        }
         
-}
+    }
+    
+    @objc func endStore() {
+        
+        activityIndicator.stopAnimating()
+        let manager = ManagerPlaces.shared()
+        
+        dismiss(animated: true, completion: nil)
+        manager.updateObservers()
+        
+    }
     
     /*
     // MARK: - Navigation

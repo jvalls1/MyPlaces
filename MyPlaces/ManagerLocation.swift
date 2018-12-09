@@ -8,15 +8,19 @@
 
 import Foundation
 import MapKit
+import UserNotifications
 
 class ManagerLocation : NSObject,CLLocationManagerDelegate {
     
     var m_locationManager:CLLocationManager!
     var location: CLLocationCoordinate2D!
     
+    // For educational aim.
+    var firsTime : Bool = true
+    
     public func getLocation()->CLLocationCoordinate2D!
     {
-        return location
+        return (self.m_locationManager!.location?.coordinate)!
     }
     
     private static var sharedManagerLocation: ManagerLocation = {
@@ -24,6 +28,7 @@ class ManagerLocation : NSObject,CLLocationManagerDelegate {
         var singletonManager:ManagerLocation?
         
         let status : CLAuthorizationStatus = CLLocationManager.authorizationStatus()
+        let center : UNUserNotificationCenter = UNUserNotificationCenter.current()
         
         if(singletonManager == nil) {
             
@@ -40,17 +45,50 @@ class ManagerLocation : NSObject,CLLocationManagerDelegate {
             
             if (status == CLAuthorizationStatus.notDetermined) {
                 singletonManager!.m_locationManager.requestWhenInUseAuthorization()
+                singletonManager!.m_locationManager.startUpdatingLocation()
             }
             else {
                 singletonManager!.m_locationManager.startUpdatingLocation()
                 singletonManager!.location = singletonManager!.m_locationManager!.location?.coordinate
             }
+            
+            center.requestAuthorization(options: [.alert,.sound,.badge]) {
+                (granted,error) in
+                // Enabled or disabled features based on authorization.
+                
+            }
+            
         }
         return singletonManager!
     }()
     
     func locationManager(_ manager: CLLocationManager,didUpdateLocations locations: [CLLocation]){
-         location = locations.last!.coordinate
+        
+        let m_location = locations [locations.endIndex-1]
+        print("Print a la Consola")
+        
+        if(firsTime){
+            
+            let content = UNMutableNotificationContent()
+            content.title = "Meeting Reminder"
+            content.subtitle = "Message subtitle"
+            content.body = "Don't forget to bring coffee."
+            content.badge = 1
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+            
+            let requestIdentifier = "demoNotification"
+            let request = UNNotificationRequest(identifier: requestIdentifier,content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+            // Handle error
+                
+            })
+           
+            
+            firsTime = false;
+        }
+        
     }
     
     class func shared() -> ManagerLocation {

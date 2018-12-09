@@ -18,6 +18,7 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="n10-s1-jtt" kind="relationship" relationship="viewControllers" id="opa-Gg-UXY"/>
@@ -36,9 +37,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <connections>
                             <outlet property="dataSource" destination="9o5-lv-PvD" id="tJh-RV-5Bw"/>
                             <outlet property="delegate" destination="9o5-lv-PvD" id="0i4-wu-cLz"/>
+                            <outletCollection property="gestureRecognizers" destination="28H-Vg-mfP" appends="YES" id="91X-0O-MgO"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Places" id="CFg-7r-Evn">
@@ -50,6 +53,7 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jo-A5-73F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="28H-Vg-mfP"/>
             </objects>
             <point key="canvasLocation" x="1871" y="-510"/>
         </scene>
@@ -159,6 +163,10 @@
                                     <constraint firstItem="LQB-3L-hhr" firstAttribute="width" secondItem="FBX-zr-0n0" secondAttribute="width" id="Ofp-SM-gpr"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Nz7-Go-bg8">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -174,6 +182,7 @@
                         <viewLayoutGuide key="safeArea" id="V9n-dp-peR"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Nz7-Go-bg8" id="MIP-wf-K6f"/>
                         <outlet property="btnUpdate" destination="4JN-mv-b5l" id="g4n-3F-fts"/>
                         <outlet property="constrainHeight" destination="9cd-h7-jVy" id="fhe-Lo-P0O"/>
                         <outlet property="imagePicked" destination="MWZ-Fu-lvS" id="A7s-Ko-W50"/>
@@ -233,12 +242,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="m_map" destination="zwb-Sv-YvO" id="N0E-IK-geh"/>
+                        <outlet property="m_map" destination="zwb-Sv-YvO" id="LwM-lo-FmF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usy-Y9-bBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1890" y="197"/>
+            <point key="canvasLocation" x="1888.8" y="196.55172413793105"/>
         </scene>
         <!--List-->
         <scene sceneID="mBk-x0-FS2">
@@ -248,6 +257,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2SQ-5u-Zng">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="9o5-lv-PvD" kind="relationship" relationship="rootViewController" id="78K-Jk-Tsk"/>
