@@ -214,10 +214,15 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
     
     @IBAction func remove(_ sender: Any) {
         
+        // Empezamos la animacion.
+        activityIndicator.startAnimating()
+        
         let managerPlaces = ManagerPlaces.shared()
         managerPlaces.delete(_value: place!)
         managerPlaces.updateObservers()
     
+        // Seriliazating ...... all datababse.
+        managerPlaces.store()
     }
     
     @IBAction func selectImage(_ sender: Any) {

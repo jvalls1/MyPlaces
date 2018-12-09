@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		652847072189CC6200E92C56 /* MKMyPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652847062189CC6200E92C56 /* MKMyPointAnnotation.swift */; };
+		6554651A21BD727700D61ED6 /* Barcelona_Locations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 6554651921BD727700D61ED6 /* Barcelona_Locations.gpx */; };
 		65568D802163F68400F31156 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2DF8821567FBB00811EC2 /* AppDelegate.swift */; };
 		656964CD217B94F000E4F0FA /* ManagerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656964CC217B94F000E4F0FA /* ManagerLocation.swift */; };
 		6577B7A4217F39CA00B5DB3A /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6577B7A3217F39CA00B5DB3A /* FileSystem.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		652847062189CC6200E92C56 /* MKMyPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMyPointAnnotation.swift; sourceTree = "<group>"; };
+		6554651921BD727700D61ED6 /* Barcelona_Locations.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Barcelona_Locations.gpx; sourceTree = "<group>"; };
 		656964CC217B94F000E4F0FA /* ManagerLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerLocation.swift; sourceTree = "<group>"; };
 		6577B7A3217F39CA00B5DB3A /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		65A2DF8521567FBB00811EC2 /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,7 @@
 				65D77075215FEFFE0056EBDA /* PlaceTourist.swift */,
 				65D77077215FF7F10056EBDA /* ManagerPlaces.swift */,
 				652847062189CC6200E92C56 /* MKMyPointAnnotation.swift */,
+				6554651921BD727700D61ED6 /* Barcelona_Locations.gpx */,
 			);
 			path = MyPlaces;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			files = (
 				65A2DF9521567FBE00811EC2 /* LaunchScreen.storyboard in Resources */,
 				65A2DF9221567FBE00811EC2 /* Assets.xcassets in Resources */,
+				6554651A21BD727700D61ED6 /* Barcelona_Locations.gpx in Resources */,
 				65A2DF9021567FBC00811EC2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
